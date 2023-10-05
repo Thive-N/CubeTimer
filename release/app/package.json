@@ -1,0 +1,14 @@
+{
+  "name": "cube-timer",
+  "version": "0.0.0",
+  "description": "A stackmat like timer for the rubix cube",
+  "license": "GPL-3.0-only",
+  "author": "Thive-N",
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}
