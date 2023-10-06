@@ -1,10 +1,11 @@
 {
+  "files.eol": "\n",
   "files.associations": {
     ".eslintrc": "jsonc",
     ".prettierrc": "jsonc",
     ".eslintignore": "ignore"
   },
-  
+
   "eslint.validate": [
     "javascript",
     "javascriptreact",

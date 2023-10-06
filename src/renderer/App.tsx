@@ -1,9 +1,12 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 
 function Placeholder() {
   return (
     <div>
-      <h1>Placeholder</h1>
+      <h1 className="text-xl bg-gray-500 text-center text-white">
+        placeholder
+      </h1>
     </div>
   );
 }
