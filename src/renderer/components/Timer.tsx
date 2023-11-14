@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useState } from 'react';
+import TimeDisplay from './TimeDisplay';
 
 function Timer() {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
@@ -40,12 +42,7 @@ function Timer() {
 
   return (
     <div>
-      {' '}
-      <div>
-        <span>{time.m >= 10 ? time.m : `0${time.m}`}</span>
-        <span>{time.s >= 10 ? time.s : `0${time.s}`}</span>
-        <span>{time.ms >= 10 ? time.ms : `0${time.ms}`}</span>
-      </div>
+      <TimeDisplay ms={time.ms} s={time.s} m={time.m} />
       <button onClick={start} type="button">
         Start
       </button>
