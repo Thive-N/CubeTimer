@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
+import './Timer.css';
 
 function Timer() {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
@@ -27,37 +28,49 @@ function Timer() {
   };
 
   const start = () => {
-    if (!isRunningRef.current) {
-      isRunningRef.current = true;
-      intervalRef.current = setInterval(run, 10);
-    }
+    isRunningRef.current = true;
+    intervalRef.current = setInterval(run, 10);
   };
 
   const stop = () => {
-    if (isRunningRef.current) {
-      clearInterval(intervalRef.current);
-      isRunningRef.current = false;
-    }
+    clearInterval(intervalRef.current);
+    isRunningRef.current = false;
   };
 
   const reset = () => {
     clearInterval(intervalRef.current);
-    isRunningRef.current = false;
+    isRunningRef.current = true;
     setTime({ ms: 0, s: 0, m: 0 });
   };
 
+  useEffect(() => {
+    document.addEventListener('keyup', (event) => {
+      if (event.code === 'Space') {
+        if (isRunningRef.current) {
+          stop();
+        } else {
+          reset();
+          start();
+        }
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div>
+    <div className="container">
       <TimeDisplay ms={time.ms} s={time.s} m={time.m} />
-      <button onClick={start} type="button">
-        Start
-      </button>
-      <button onClick={stop} type="button">
-        Stop
-      </button>
-      <button onClick={reset} type="button">
-        Reset
-      </button>
+      <div className="button-container">
+        <button className="button" onClick={start} type="button">
+          Start
+        </button>
+        <button className="button" onClick={stop} type="button">
+          Stop
+        </button>
+        <button className="button" onClick={reset} type="button">
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
