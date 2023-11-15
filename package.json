@@ -103,8 +103,8 @@
     "webpack-merge": "^5.9.0"
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "CubeTimer",
+    "appId": "org.erb.CubeTimer",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
