@@ -3,10 +3,17 @@ import TimeDisplay from './TimeDisplay';
 import './Timer.css';
 
 function Timer() {
+  // react state hook to store the time
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
+  // react ref hook to store the interval id
   const intervalRef = useRef<any>();
+  // react ref hook to store the state of the timer (running or not)
   const isRunningRef = useRef(false);
 
+  const spaceHoldRunningRef = useRef<any>();
+  const timerRunnable = useRef(false);
+
+  // function to increment the time
   const run = () => {
     setTime((prevTime) => {
       let updatedMs = prevTime.ms;
@@ -45,16 +52,33 @@ function Timer() {
   };
 
   useEffect(() => {
-    document.addEventListener('keyup', (event) => {
+    document.addEventListener('keydown', (event) => {
       if (event.code === 'Space') {
         if (isRunningRef.current) {
           stop();
-        } else {
-          reset();
-          start();
+          return;
+        }
+        if (!timerRunnable.current) {
+          spaceHoldRunningRef.current = setTimeout(() => {
+            timerRunnable.current = true;
+          }, 500);
         }
       }
     });
+
+    document.addEventListener('keyup', (event) => {
+      if (event.code === 'Space') {
+        clearTimeout(spaceHoldRunningRef.current);
+        if (timerRunnable.current) {
+          if (!isRunningRef.current) {
+            reset();
+            start();
+          }
+        }
+        timerRunnable.current = false;
+      }
+    });
+    // TODO: fix exhaustive deps warning.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
