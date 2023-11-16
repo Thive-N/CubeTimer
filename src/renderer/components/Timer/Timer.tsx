@@ -13,6 +13,8 @@ function Timer() {
       let updatedS = prevTime.s;
       let updatedM = prevTime.m;
 
+      updatedMs += 1;
+
       if (updatedS === 60) {
         updatedM += 1;
         updatedS = 0;
@@ -21,7 +23,6 @@ function Timer() {
         updatedS += 1;
         updatedMs = 0;
       }
-      updatedMs += 1;
 
       return { ms: updatedMs, s: updatedS, m: updatedM };
     });
@@ -60,17 +61,6 @@ function Timer() {
   return (
     <div className="container">
       <TimeDisplay ms={time.ms} s={time.s} m={time.m} />
-      <div className="button-container">
-        <button className="button" onClick={start} type="button">
-          Start
-        </button>
-        <button className="button" onClick={stop} type="button">
-          Stop
-        </button>
-        <button className="button" onClick={reset} type="button">
-          Reset
-        </button>
-      </div>
     </div>
   );
 }
