@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import TimeDisplay from './TimeDisplay';
 import './Timer.css';
 
 function Timer() {
@@ -12,6 +11,8 @@ function Timer() {
 
   const spaceHoldRunningRef = useRef<any>();
   const timerRunnable = useRef(false);
+  const timerset = useRef(false);
+  const [color, setColor] = useState('#483d8b');
 
   // function to increment the time
   const run = () => {
@@ -58,9 +59,12 @@ function Timer() {
           stop();
           return;
         }
-        if (!timerRunnable.current) {
+        if (!timerRunnable.current && !timerset.current) {
+          setColor('#ff0000');
           spaceHoldRunningRef.current = setTimeout(() => {
+            setColor('#00ff00');
             timerRunnable.current = true;
+            timerset.current = true;
           }, 500);
         }
       }
@@ -68,7 +72,10 @@ function Timer() {
 
     document.addEventListener('keyup', (event) => {
       if (event.code === 'Space') {
+        setColor('#483d8b');
         clearTimeout(spaceHoldRunningRef.current);
+        timerset.current = false;
+
         if (timerRunnable.current) {
           if (!isRunningRef.current) {
             reset();
@@ -84,7 +91,34 @@ function Timer() {
 
   return (
     <div className="container">
-      <TimeDisplay ms={time.ms} s={time.s} m={time.m} />
+      <div>
+        <div className="widget">
+          <span
+            style={{
+              backgroundColor: color,
+            }}
+            className="time"
+          >
+            {time.m >= 10 ? time.m : `0${time.m}`}
+          </span>
+          <span
+            style={{
+              backgroundColor: color,
+            }}
+            className="time"
+          >
+            {time.s >= 10 ? time.s : `0${time.s}`}
+          </span>
+          <span
+            style={{
+              backgroundColor: color,
+            }}
+            className="time"
+          >
+            {time.ms >= 10 ? time.ms : `0${time.ms}`}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
