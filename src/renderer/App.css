@@ -1,9 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.main-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 100vh;
+}
 
+.score-sheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100vh;
+
+  border-right: 1px solid #45005a;
+}
 .timer {
   display: flex;
   justify-content: center;
-  align-items: 'center';
+  align-items: center;
+  width: 80%;
+  height: 100vh;
 }

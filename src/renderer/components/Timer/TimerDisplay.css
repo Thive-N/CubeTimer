@@ -1,14 +1,14 @@
 .time {
   background-color: blueviolet;
   color: white;
-  font-size: 2em;
+  font-size: 6em;
   border-radius: 10px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
-  width: 60px;
+  height: 150px;
+  width: 150px;
   margin: 10px;
 }
 
