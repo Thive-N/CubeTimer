@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.Timer {
+.timer {
   display: flex;
   justify-content: center;
   align-items: 'center';

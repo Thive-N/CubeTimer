@@ -1,4 +1,4 @@
-.Time {
+.time {
   background-color: blueviolet;
   color: white;
   font-size: 2em;
@@ -12,7 +12,7 @@
   margin: 10px;
 }
 
-.Widget {
+.widget {
   display: flex;
   flex-direction: row;
   justify-content: center;

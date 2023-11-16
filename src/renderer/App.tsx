@@ -4,8 +4,10 @@ import Timer from './components/Timer/Timer';
 
 function Root() {
   return (
-    <div className="Timer">
-      <Timer />
+    <div className="Root">
+      <div className="Timer">
+        <Timer />
+      </div>
     </div>
   );
 }
