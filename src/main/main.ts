@@ -7,7 +7,9 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import { Database } from './database/database';
 
+const database = new Database();
 class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -15,6 +17,13 @@ class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
+ipcMain.handle(
+  'addTime',
+  async (_, time: string, session?: string, delay?: number) => {
+    await database.addTime(time, session, delay);
+  },
+);
 
 let mainWindow: BrowserWindow | null = null;
 
