@@ -8,6 +8,7 @@ function Timer() {
   const intervalRef = useRef<any>();
   // react ref hook to store the state of the timer (running or not)
   const isRunningRef = useRef(false);
+  const timeRef = useRef(time);
 
   const spaceHoldRunningRef = useRef<any>();
   const timerRunnable = useRef(false);
@@ -52,11 +53,20 @@ function Timer() {
     setTime({ ms: 0, s: 0, m: 0 });
   };
 
+  const timeToString = () => {
+    return `${time.m.toString()}:${time.s.toString()}:${time.ms.toString()}`;
+  };
+
+  useEffect(() => {
+    timeRef.current = time;
+  }, [time]);
+
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
       if (event.code === 'Space') {
         if (isRunningRef.current) {
           stop();
+          window.electron.ipcRenderer.sendMessage('addTime', [timeToString()]);
           return;
         }
         if (!timerRunnable.current && !timerset.current) {
