@@ -18,7 +18,7 @@ class AppUpdater {
   }
 }
 
-ipcMain.handle(
+ipcMain.on(
   'addTime',
   async (_, time: string, session?: string, delay?: number) => {
     await database.addTime(time, session, delay);
