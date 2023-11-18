@@ -47,6 +47,13 @@ export class Database {
     this.save();
   }
 
+  public async getTimes(session: string = 'default'): Promise<[string]> {
+    if (!this.json[session]) {
+      this.json[session] = [];
+    }
+    return this.json[session];
+  }
+
   public static getCurrentTimestamp(): string {
     return Date.now().toString();
   }
