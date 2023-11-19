@@ -54,7 +54,7 @@ function Timer() {
   };
 
   const timeToString = () => {
-    return `${time.m.toString()}:${time.s.toString()}:${time.ms.toString()}`;
+    return `${timeRef.current.m.toString()}:${timeRef.current.s.toString()}:${timeRef.current.ms.toString()}`;
   };
 
   useEffect(() => {
