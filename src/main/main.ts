@@ -25,6 +25,11 @@ ipcMain.on(
   },
 );
 
+ipcMain.on('getTimes', async (_, session?: string) => {
+  const times = await database.getTimes(session);
+  _.reply(JSON.stringify(times));
+});
+
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
