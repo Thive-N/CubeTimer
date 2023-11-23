@@ -47,7 +47,7 @@ export class Database {
     this.save();
   }
 
-  public async getTimes(session: string = 'default'): Promise<[string]> {
+  public async getTimes(session: string = 'default'): Promise<[any]> {
     if (!this.json[session]) {
       this.json[session] = [];
     }
