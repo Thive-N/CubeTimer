@@ -1,12 +1,13 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Timer from './components/Timer/Timer';
+import ScoreCard from './components/ScoreCard/ScoreCard';
 
 function Root() {
   return (
     <div className="main-page">
       <div className="score-sheet">
-        <h1>scores</h1>
+        <ScoreCard />
       </div>
       <div className="timer">
         <Timer />

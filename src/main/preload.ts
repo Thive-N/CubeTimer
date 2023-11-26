@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'addTime';
+export type Channels = 'addTime' | 'getTimes';
 
 const electronHandler = {
   ipcRenderer: {

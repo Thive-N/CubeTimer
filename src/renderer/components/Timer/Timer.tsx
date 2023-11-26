@@ -54,7 +54,13 @@ function Timer() {
   };
 
   const timeToString = () => {
-    return `${timeRef.current.m.toString()}:${timeRef.current.s.toString()}:${timeRef.current.ms.toString()}`;
+    return `${
+      timeRef.current.m >= 10 ? timeRef.current.m : `0${timeRef.current.m}`
+    }:${
+      timeRef.current.s >= 10 ? timeRef.current.s : `0${timeRef.current.s}`
+    }:${
+      timeRef.current.ms >= 10 ? timeRef.current.ms : `0${timeRef.current.ms}`
+    }`;
   };
 
   useEffect(() => {

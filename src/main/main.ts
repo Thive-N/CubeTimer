@@ -22,12 +22,14 @@ ipcMain.on(
   'addTime',
   async (_, time: string, session?: string, delay?: number) => {
     await database.addTime(time, session, delay);
+    const times = await database.getTimes(session);
+    _.reply('getTimes', JSON.stringify(times));
   },
 );
 
 ipcMain.on('getTimes', async (_, session?: string) => {
   const times = await database.getTimes(session);
-  _.reply(JSON.stringify(times));
+  _.reply('getTimes', JSON.stringify(times));
 });
 
 let mainWindow: BrowserWindow | null = null;
