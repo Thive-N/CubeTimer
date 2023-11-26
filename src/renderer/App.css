@@ -15,8 +15,8 @@
 .score-sheet {
   display: flex;
 
-  flex-direction: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: top;
   align-items: center;
 
   width: 20%;

@@ -21,9 +21,16 @@ function ScoreCard() {
     );
   }
   return (
-    <table>
-      <tbody>{table}</tbody>
-    </table>
+    <div className="score-card">
+      <div className="score-card-header">
+        <h1>Score Card</h1>
+      </div>
+      <div className="score-card-scores">
+        <table>
+          <tbody>{table}</tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
