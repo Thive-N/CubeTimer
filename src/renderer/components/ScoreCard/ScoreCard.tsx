@@ -8,7 +8,7 @@ function ScoreCard() {
     window.electron.ipcRenderer.on('getTimes', (args) => {
       setJson(JSON.parse(args as string));
     });
-    window.electron.ipcRenderer.sendMessage('getTimes');
+    window.electron.ipcRenderer.sendMessage('getTimes', []);
   }, []);
 
   const table = [];
