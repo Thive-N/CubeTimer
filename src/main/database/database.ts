@@ -1,12 +1,14 @@
 import fs from 'fs';
 import { userDataDir } from 'appdirs';
 
-export class Database {
+class Database {
   private json: any;
 
   private path: string = userDataDir('CubeTimer', 'Thive-N');
 
   private jsonPath: string = `${this.path}/database.json`;
+
+  private newTimes: { [key: string]: [string] } = {};
 
   constructor() {
     this.load();
@@ -45,6 +47,26 @@ export class Database {
       delay,
     });
     this.save();
+
+    if (!this.newTimes[session]) {
+      this.newTimes[session] = [time];
+    } else {
+      this.newTimes[session].push(time);
+    }
+  }
+
+  public async getBestSinceProgramStart(
+    session: string = 'default',
+  ): Promise<string> {
+    if (!this.newTimes[session]) {
+      return '0.00';
+    }
+    const times = this.newTimes[session];
+    const best = times.reduce(
+      (prev, curr) => (curr < prev ? curr : prev),
+      times[0],
+    );
+    return best;
   }
 
   public async getTimes(session: string = 'default'): Promise<[any]> {

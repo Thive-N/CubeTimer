@@ -7,22 +7,33 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { Database } from './database/database';
+import Database from './database/database';
+
+const CLIENT_ID = '1178469210385555556';
+
+const client = require('discord-rich-presence')(CLIENT_ID);
 
 const database = new Database();
-class AppUpdater {
-  constructor() {
-    log.transports.file.level = 'info';
-    autoUpdater.logger = log;
-    autoUpdater.checkForUpdatesAndNotify();
-  }
+const startTimestamp = new Date();
+
+function updateRPC(time: string) {
+  client.updatePresence({
+    state: 'Cubing Away',
+    details: `Session Best: ${time}`,
+    startTimestamp,
+    largeImageKey: 'main-cube',
+  });
 }
+
+updateRPC('0.00');
 
 ipcMain.on(
   'addTime',
   async (_, time: string, session?: string, delay?: number) => {
     await database.addTime(time, session, delay);
     const times = await database.getTimes(session);
+    const best = await database.getBestSinceProgramStart(session);
+    updateRPC(best);
     _.reply('getTimes', JSON.stringify(times));
   },
 );
