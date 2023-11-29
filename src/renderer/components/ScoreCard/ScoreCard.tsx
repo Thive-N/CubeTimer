@@ -8,14 +8,17 @@ function ScoreCard() {
     window.electron.ipcRenderer.on('getTimes', (args) => {
       setJson(JSON.parse(args as string));
     });
-    window.electron.ipcRenderer.sendMessage('getTimes', []);
+    setTimeout(() => {
+      window.electron.ipcRenderer.sendMessage('getTimes', []);
+    }, 1000);
   }, []);
 
   const table = [];
   for (let i = 0; i < json.length; i += 1) {
+    const date = new Date(json[i].timestamp);
     table.push(
       <tr key={i}>
-        <th>{json[i].timestamp}</th>
+        <th>{date.toLocaleString()}</th>
         <th>{json[i].time}</th>
       </tr>,
     );

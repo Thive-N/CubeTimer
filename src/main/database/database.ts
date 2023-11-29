@@ -77,7 +77,7 @@ class Database {
   }
 
   public static getCurrentTimestamp(): string {
-    return Date.now().toString();
+    return new Date().toString();
   }
 }
 
