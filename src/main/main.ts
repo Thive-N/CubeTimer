@@ -24,20 +24,31 @@ function updateRPC(time: string) {
 
 updateRPC('0.00');
 
-ipcMain.on(
-  'addTime',
-  async (_, time: string, session?: string, delay?: number) => {
-    await database.addTime(time, session, delay);
-    const times = await database.getTimes(session);
-    const best = await database.getBestSinceProgramStart(session);
-    updateRPC(best);
-    _.reply('sendTimes', JSON.stringify(times));
-  },
-);
-
-ipcMain.on('getTimes', async (_, session?: string) => {
-  const times = await database.getTimes(session);
+let currentSession = 'default';
+ipcMain.on('addTime', async (_, time: string, delay?: number) => {
+  await database.addTime(time, currentSession, delay);
+  const times = await database.getTimes(currentSession);
+  const best = await database.getBestSinceProgramStart(currentSession);
+  updateRPC(best);
   _.reply('sendTimes', JSON.stringify(times));
+  console.log('Added time', time, 'to session', currentSession);
+});
+
+ipcMain.on('getTimes', async (_) => {
+  const times = await database.getTimes(currentSession);
+  _.reply('sendTimes', JSON.stringify(times));
+  console.log('Sent times for session', currentSession);
+});
+
+ipcMain.on('getSessions', async (_) => {
+  const sessions = await database.getSessions();
+  _.reply('sendSessions', JSON.stringify(sessions));
+  console.log('Sent sessions');
+});
+
+ipcMain.on('setSession', async (_, session: string) => {
+  currentSession = session;
+  console.log('Set session to', session);
 });
 
 let mainWindow: BrowserWindow | null = null;

@@ -76,6 +76,10 @@ class Database {
     return this.json[session];
   }
 
+  public async getSessions(): Promise<string[]> {
+    return Object.keys(this.json);
+  }
+
   public static getCurrentTimestamp(): string {
     return new Date().toString();
   }
