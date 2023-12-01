@@ -4,9 +4,11 @@ import './ScoreCard.css';
 function ScoreCard() {
   const [json, setJson] = React.useState<any>([]);
   const [table, setTable] = React.useState<any>([]);
-  window.electron.ipcRenderer.on('getTimes', (args) => {
-    setJson(JSON.parse(args as string));
-  });
+  useEffect(() => {
+    window.electron.ipcRenderer.on('sendTimes', (args) => {
+      setJson(JSON.parse(args as string));
+    });
+  }, []);
 
   window.electron.ipcRenderer.sendMessage('getTimes');
 
@@ -28,6 +30,16 @@ function ScoreCard() {
     <div className="score-card">
       <div className="score-card-header">
         <h1>Score Card</h1>
+        <div className="session-changer">
+          <h1>Session: </h1>
+          <select>
+            <option value="fruit">Fruit</option>
+
+            <option value="vegetable">Vegetable</option>
+
+            <option value="meat">Meat</option>
+          </select>
+        </div>
       </div>
       <div className="score-card-scores">
         <table>

@@ -31,13 +31,13 @@ ipcMain.on(
     const times = await database.getTimes(session);
     const best = await database.getBestSinceProgramStart(session);
     updateRPC(best);
-    _.reply('getTimes', JSON.stringify(times));
+    _.reply('sendTimes', JSON.stringify(times));
   },
 );
 
 ipcMain.on('getTimes', async (_, session?: string) => {
   const times = await database.getTimes(session);
-  _.reply('getTimes', JSON.stringify(times));
+  _.reply('sendTimes', JSON.stringify(times));
 });
 
 let mainWindow: BrowserWindow | null = null;
