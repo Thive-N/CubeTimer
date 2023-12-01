@@ -4,15 +4,11 @@ import './ScoreCard.css';
 function ScoreCard() {
   const [json, setJson] = React.useState<any>([]);
   const [table, setTable] = React.useState<any>([]);
+  window.electron.ipcRenderer.on('getTimes', (args) => {
+    setJson(JSON.parse(args as string));
+  });
 
-  useEffect(() => {
-    window.electron.ipcRenderer.on('getTimes', (args) => {
-      setJson(JSON.parse(args as string));
-    });
-    setTimeout(() => {
-      window.electron.ipcRenderer.sendMessage('getTimes', []);
-    }, 1000);
-  }, []);
+  window.electron.ipcRenderer.sendMessage('getTimes');
 
   useEffect(() => {
     const t = [];
