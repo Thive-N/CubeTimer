@@ -46,9 +46,21 @@ tr:nth-child(even) {
 .score-card-scores {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: fit-content;
+  height: 90%;
   overflow-y: scroll;
+}
+
+table {
+  overflow: hidden;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border-style: solid;
+  border-width: 5px;
+  border-color: #bcbcbc;
+  word-wrap: break-word;
 }

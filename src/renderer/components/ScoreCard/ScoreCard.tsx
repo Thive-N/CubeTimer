@@ -3,6 +3,7 @@ import './ScoreCard.css';
 
 function ScoreCard() {
   const [json, setJson] = React.useState<any>([]);
+  const [table, setTable] = React.useState<any>([]);
 
   useEffect(() => {
     window.electron.ipcRenderer.on('getTimes', (args) => {
@@ -13,16 +14,20 @@ function ScoreCard() {
     }, 1000);
   }, []);
 
-  const table = [];
-  for (let i = 0; i < json.length; i += 1) {
-    const date = new Date(json[i].timestamp);
-    table.push(
-      <tr key={i}>
-        <th>{date.toLocaleString()}</th>
-        <th>{json[i].time}</th>
-      </tr>,
-    );
-  }
+  useEffect(() => {
+    const t = [];
+    for (let i = json.length - 1; i >= 0; i -= 1) {
+      const date = new Date(json[i].timestamp);
+      t.push(
+        <tr key={i}>
+          <th>{date.toLocaleString()}</th>
+          <th>{json[i].time}</th>
+        </tr>,
+      );
+    }
+    setTable(t);
+  }, [json]);
+
   return (
     <div className="score-card">
       <div className="score-card-header">
