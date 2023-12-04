@@ -1,14 +1,29 @@
 import React, { useEffect } from 'react';
 import './ScoreCard.css';
+import CreatableSelect from 'react-select/creatable';
+
+interface Option {
+  readonly label: string;
+  readonly value: string;
+}
+
+const createOption = (label: string) => ({
+  label,
+  value: label,
+});
 
 function ScoreCard() {
   const [json, setJson] = React.useState<any>([]);
   const [table, setTable] = React.useState<any>([]);
-  const [currentSession, setCurrentSession] = React.useState('default');
   const [sessions, setSessions] = React.useState<any>([]);
+  const [currentSession, setCurrentSession] = React.useState<Option | null>(
+    null,
+  );
   const [sessionsOptions, setSessionsOptions] = React.useState<any>([]);
   const tableRef = React.useRef<HTMLTableElement>(null);
   const [scrollPosition, setScrollPosition] = React.useState<number>(0);
+
+  const [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
     window.electron.ipcRenderer.on('sendTimes', (args) => {
@@ -50,27 +65,47 @@ function ScoreCard() {
   }, [json, scrollPosition]);
 
   useEffect(() => {
-    const t = [];
-    for (let i = 0; i < sessions.length; i += 1) {
-      t.push(<option value={sessions[i]}>{sessions[i]}</option>);
-    }
-    setSessionsOptions(t);
+    const options = sessions.map((session: any) => {
+      return { label: session, value: session };
+    });
+    setSessionsOptions(options);
   }, [sessions]);
 
-  const handleChange = (event: any) => {
-    setCurrentSession(event.target.value);
-    window.electron.ipcRenderer.sendMessage('setSession', event.target.value);
-  };
+  function onChange(newValue: any): void {
+    setCurrentSession(newValue);
+    window.electron.ipcRenderer.sendMessage('setSession', newValue.value);
+    window.electron.ipcRenderer.sendMessage('getTimes');
+  }
+
+  function onCreateOption(input: string): void {
+    setIsLoading(true);
+    const newOption = createOption(input);
+    setSessionsOptions([...sessionsOptions, newOption]);
+    window.electron.ipcRenderer.sendMessage('addSession', input);
+    window.electron.ipcRenderer.sendMessage('setSession', input);
+    window.electron.ipcRenderer.sendMessage('sendTimes');
+    setCurrentSession(newOption);
+    setIsLoading(false);
+  }
+
   return (
     <div className="score-card">
       <div className="score-card-header">
         <h1>Score Card</h1>
         <div className="session-changer">
-          <h1>Session: </h1>
-          <select value={currentSession} onChange={handleChange}>
-            {sessionsOptions}
-            <option value="">Create New...</option>
-          </select>
+          <h1 className="session-changer-tag">Session:</h1>
+          <CreatableSelect
+            isDisabled={isLoading}
+            isLoading={isLoading}
+            onChange={(newval) => {
+              onChange(newval);
+            }}
+            onCreateOption={(v): void => {
+              onCreateOption(v);
+            }}
+            options={sessionsOptions}
+            value={currentSession}
+          />
         </div>
       </div>
       <div className="score-card-scores">

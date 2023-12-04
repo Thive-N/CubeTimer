@@ -58,6 +58,11 @@ tr:nth-child(even) {
   align-items: center;
   width: 100%;
 }
+
+.session-changer-tag {
+  margin: 10px;
+}
+
 table {
   overflow: hidden;
   width: 100%;

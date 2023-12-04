@@ -80,6 +80,11 @@ class Database {
     return Object.keys(this.json);
   }
 
+  public async addSession(session: string): Promise<void> {
+    this.json[session] = [];
+    this.save();
+  }
+
   public static getCurrentTimestamp(): string {
     return new Date().toString();
   }

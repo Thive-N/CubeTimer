@@ -25,6 +25,7 @@ function updateRPC(time: string) {
 updateRPC('0.00');
 
 let currentSession = 'default';
+
 ipcMain.on('addTime', async (_, time: string, delay?: number) => {
   await database.addTime(time, currentSession, delay);
   const times = await database.getTimes(currentSession);
@@ -43,7 +44,7 @@ ipcMain.on('getTimes', async (_) => {
 ipcMain.on('getSessions', async (_) => {
   const sessions = await database.getSessions();
   _.reply('sendSessions', JSON.stringify(sessions));
-  console.log('Sent sessions');
+  console.log('Sent sessions for session', currentSession);
 });
 
 ipcMain.on('setSession', async (_, session: string) => {
@@ -51,6 +52,10 @@ ipcMain.on('setSession', async (_, session: string) => {
   console.log('Set session to', session);
 });
 
+ipcMain.on('addSession', async (_, session: string) => {
+  await database.addSession(session);
+  console.log('Added session', session);
+});
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
