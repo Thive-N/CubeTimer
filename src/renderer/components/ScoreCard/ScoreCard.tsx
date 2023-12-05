@@ -69,6 +69,7 @@ function ScoreCard() {
       return { label: session, value: session };
     });
     setSessionsOptions(options);
+    setCurrentSession({ label: 'default', value: 'default' });
   }, [sessions]);
 
   function onChange(newValue: any): void {
@@ -109,7 +110,13 @@ function ScoreCard() {
         </div>
       </div>
       <div className="score-card-scores">
-        <table ref={tableRef}>
+        <table ref={tableRef} className="score-card-scores-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Score</th>
+            </tr>
+          </thead>
           <tbody>{table}</tbody>
         </table>
       </div>
