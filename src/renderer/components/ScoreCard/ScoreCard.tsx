@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ScoreCard.css';
 import CreatableSelect from 'react-select/creatable';
 
@@ -13,17 +13,15 @@ const createOption = (label: string) => ({
 });
 
 function ScoreCard() {
-  const [json, setJson] = React.useState<any>([]);
-  const [table, setTable] = React.useState<any>([]);
-  const [sessions, setSessions] = React.useState<any>([]);
-  const [currentSession, setCurrentSession] = React.useState<Option | null>(
-    null,
-  );
-  const [sessionsOptions, setSessionsOptions] = React.useState<any>([]);
+  const [json, setJson] = useState<any>([]);
+  const [table, setTable] = useState<any>([]);
+  const [sessions, setSessions] = useState<any>([]);
+  const [currentSession, setCurrentSession] = useState<Option | null>(null);
+  const [sessionsOptions, setSessionsOptions] = useState<any>([]);
   const tableRef = React.useRef<HTMLTableElement>(null);
-  const [scrollPosition, setScrollPosition] = React.useState<number>(0);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
 
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     window.electron.ipcRenderer.on('sendTimes', (args) => {
