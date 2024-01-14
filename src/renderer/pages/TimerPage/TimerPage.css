@@ -1,0 +1,31 @@
+.main-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+  max-height: 100%;
+
+  max-width: 100%;
+}
+
+.score-sheet {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+
+  width: 20%;
+  height: 100%;
+
+  border-right: 1px solid #45005a;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+}
