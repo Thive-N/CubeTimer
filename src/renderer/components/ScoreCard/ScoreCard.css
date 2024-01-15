@@ -36,6 +36,18 @@
   margin: 10px;
 }
 
+.link-to-timegraph-from-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blueviolet;
+  color: white;
+  white-space: nowrap;
+  margin-top: 50px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 table {
   overflow: hidden;
   width: 100%;

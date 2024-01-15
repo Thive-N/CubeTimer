@@ -1,4 +1,4 @@
-.main-page {
+.timer-page {
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -26,6 +26,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 60%;
+  height: 100%;
+}
+
+.routing-buttons {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+
+  width: 20%;
   height: 100%;
 }

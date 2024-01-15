@@ -5,7 +5,7 @@ import ScoreCard from '../../components/ScoreCard/ScoreCard';
 
 function TimerPage() {
   return (
-    <div className="main-page">
+    <div className="timer-page">
       <div className="score-sheet">
         <ScoreCard />
       </div>
