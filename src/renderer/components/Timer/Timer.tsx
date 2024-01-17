@@ -68,7 +68,7 @@ function Timer() {
   }, [time]);
 
   useEffect(() => {
-    document.addEventListener('keydown', (event) => {
+    const handleSpaceDown = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
         if (isRunningRef.current) {
           stop();
@@ -84,9 +84,9 @@ function Timer() {
           }, 500);
         }
       }
-    });
+    };
 
-    document.addEventListener('keyup', (event) => {
+    const handleSpaceUp = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
         setColor('#483d8b');
         clearTimeout(spaceHoldRunningRef.current);
@@ -100,7 +100,15 @@ function Timer() {
         }
         timerRunnable.current = false;
       }
-    });
+    };
+
+    document.addEventListener('keydown', handleSpaceDown);
+    document.addEventListener('keyup', handleSpaceUp);
+
+    return () => {
+      document.removeEventListener('keydown', handleSpaceDown);
+      document.removeEventListener('keyup', handleSpaceUp);
+    };
     // TODO: fix exhaustive deps warning.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
