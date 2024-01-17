@@ -87,9 +87,7 @@ function TimeGraph() {
     });
   }, [currentSessionTimes]);
 
-  useEffect(() => {
-    console.log(graphData);
-  }, [graphData]);
+  useEffect(() => {}, [graphData]);
 
   function onChange(newValue: any): void {
     setCurrentSession(newValue);
