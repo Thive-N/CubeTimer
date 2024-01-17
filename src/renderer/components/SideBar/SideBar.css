@@ -1,0 +1,8 @@
+.SideBarComponent {
+  height: 100%;
+}
+
+.LinkActive {
+  background-color: #13395e;
+  color: #b6c8d9;
+}

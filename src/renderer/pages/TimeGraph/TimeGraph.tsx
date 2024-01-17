@@ -47,6 +47,7 @@ function TimeGraph() {
     });
 
     window.electron.ipcRenderer.sendMessage('getSessions');
+    setCurrentSession({ label: 'default', value: 'default' });
   }, []);
 
   useEffect(() => {
@@ -107,6 +108,7 @@ function TimeGraph() {
             onChange(newval);
           }}
           options={sessionsOptions}
+          value={sessionsOptions[0]}
         />
       </div>
       <div className="graph-container">

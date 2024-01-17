@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.RouteContainer {
+  flex: 1;
+  height: 100%;
+}
+
+.RouterContainer {
+  display: flex;
+}
