@@ -1,0 +1,7 @@
+.dark-theme {
+  --background-dark: #07070a;
+  --background-normal: #24272b;
+  --background-light: #4a525a;
+  --component-light: #3e78b2;
+  --component-dark: #004ba8;
+}

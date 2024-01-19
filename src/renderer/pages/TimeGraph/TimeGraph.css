@@ -12,18 +12,6 @@
   flex-direction: row;
 }
 
-.link-back-home-from-graph {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: blueviolet;
-  color: white;
-  white-space: nowrap;
-  margin-right: 5px;
-  padding: 5px;
-  border-radius: 10px;
-}
-
 .session-select-time-graph {
   width: 100%;
   height: 5%;

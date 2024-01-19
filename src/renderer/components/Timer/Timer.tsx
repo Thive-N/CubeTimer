@@ -13,7 +13,7 @@ function Timer() {
   const spaceHoldRunningRef = useRef<any>();
   const timerRunnable = useRef(false);
   const timerset = useRef(false);
-  const [color, setColor] = useState('#483d8b');
+  const [color, setColor] = useState('var(--component-dark)');
 
   // function to increment the time
   const run = () => {
@@ -88,7 +88,7 @@ function Timer() {
 
     const handleSpaceUp = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
-        setColor('#483d8b');
+        setColor('var(--component-dark)');
         clearTimeout(spaceHoldRunningRef.current);
         timerset.current = false;
 

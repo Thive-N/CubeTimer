@@ -1,4 +1,5 @@
 .score-card {
+  background-color: var(--background-light);
   display: flex;
   flex-direction: column;
   justify-content: top;
@@ -8,6 +9,7 @@
 }
 
 .score-card-header {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,6 +19,7 @@
 }
 
 .score-card-scores {
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -36,16 +39,9 @@
   margin: 10px;
 }
 
-.link-to-timegraph-from-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: blueviolet;
-  color: white;
-  white-space: nowrap;
-  margin-top: 50px;
-  padding: 5px;
-  border-radius: 10px;
+.session-changer-select {
+  background-color: var(--background-light);
+  color: #ffffff;
 }
 
 table {
@@ -53,15 +49,12 @@ table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
 }
 
 thead tr {
-  background-color: blueviolet;
+  background-color: var(--component-light);
   color: #ffffff;
   text-align: center;
 }
@@ -77,14 +70,13 @@ tbody tr {
 }
 
 tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+  background-color: var(--background-normal);
 }
 
 tbody tr:last-of-type {
-  border-bottom: 2px solid blueviolet;
+  border-bottom: 2px solid var(--component-light);
 }
 
 tbody tr.active-row {
   font-weight: bold;
-  color: blueviolet;
 }

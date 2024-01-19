@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ScoreCard.css';
 import CreatableSelect from 'react-select/creatable';
-import { Link } from 'react-router-dom';
 
 interface Option {
   readonly label: string;
@@ -107,9 +106,6 @@ function ScoreCard() {
             value={currentSession}
           />
         </div>
-        <Link className="link-to-timegraph-from-home" to="/timegraph">
-          Open Graph View
-        </Link>
       </div>
       <div className="score-card-scores">
         <table ref={tableRef} className="score-card-scores-table">

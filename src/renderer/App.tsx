@@ -1,5 +1,6 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './themes.css';
 import TimerPage from './pages/TimerPage/TimerPage';
 import TimeGraph from './pages/TimeGraph/TimeGraph';
 import SideBar from './components/SideBar/SideBar';
@@ -7,7 +8,7 @@ import SideBar from './components/SideBar/SideBar';
 export default function App() {
   return (
     <Router>
-      <div className="RouterContainer">
+      <div className="RouterContainer dark-theme">
         <SideBar />
         <div className="RouteContainer">
           <Routes>

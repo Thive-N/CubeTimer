@@ -4,7 +4,6 @@ import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import './TimeGraph.css';
 import { CategoryScale } from 'chart.js';
-import { Link } from 'react-router-dom';
 
 interface Option {
   readonly label: string;
@@ -97,9 +96,6 @@ function TimeGraph() {
   return (
     <div className="time-graph-page">
       <div className="graph-title">
-        <Link className="link-back-home-from-graph" to="/">
-          Go Back To Timer
-        </Link>
         <Select
           className="session-select-time-graph"
           onChange={(newval) => {
