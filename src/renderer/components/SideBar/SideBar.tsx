@@ -3,22 +3,31 @@ import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import { Link, useLocation } from 'react-router-dom';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { TimerOutlined, AutoGraphOutlined } from '@mui/icons-material';
+import './SideBar.css';
 
 function SideBar() {
   const { collapseSidebar } = useProSidebar();
   const location = useLocation();
 
   return (
-    <Sidebar style={{ height: '100vh' }} defaultCollapsed>
+    <Sidebar
+      className="SideBarComponent"
+      defaultCollapsed
+      backgroundColor="#07070a"
+    >
       <Menu
         menuItemStyles={{
+          root: {
+            backgroundColor: '#07070A',
+          },
           button: {
+            backgroundColor: '#07070A',
             [`&.active`]: {
-              backgroundColor: '#13395e',
-              color: '#b6c8d9',
+              backgroundColor: '#4A525A',
+              color: '#ffffff',
             },
             '&:hover': {
-              backgroundColor: '#265a88',
+              backgroundColor: '#4A525A',
               color: '#ffffff',
             },
           },
@@ -30,9 +39,7 @@ function SideBar() {
             collapseSidebar();
           }}
           style={{ textAlign: 'center' }}
-        >
-          <h2>Admin</h2>
-        </MenuItem>
+        />
         <MenuItem
           icon={<TimerOutlined />}
           component={<Link to="/" />}
