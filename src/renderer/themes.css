@@ -5,3 +5,11 @@
   --component-light: #3e78b2;
   --component-dark: #004ba8;
 }
+
+.light-theme {
+  --background-dark: #ffffff;
+  --background-normal: #f2f2f2;
+  --background-light: #e6e6e6;
+  --component-light: #3e78b2;
+  --component-dark: #004ba8;
+}
